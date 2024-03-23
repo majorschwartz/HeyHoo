@@ -1,11 +1,44 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Camera, CameraType } from 'expo-camera';
+import { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native';
+import Bubble from './components/Bubble';
+import RedButton from './components/RedButton';
 
 export default function App() {
-  return (
+  const [type, setType] = useState(CameraType.back);
+  const [permission, requestPermission] = Camera.useCameraPermissions();
+  const window = Dimensions.get('window');
+
+  const [bubbleState, setBubbleState] = useState("waiting");
+  const [response, setResponse] = useState("");
+
+  if (!permission) return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>Requesting Camera Permission</Text>
+    </View>
+  )
+
+  if (!permission.granted) return (
+    <View style={styles.container}>
+      <Text>Camera Permission was denied</Text>
+    </View>
+  )
+
+  function toggleCameraType() {
+    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  }
+
+  return (
+    <View>
+      <Camera style={{
+        width: window.width,
+        height: window.height
+      }} type={type}>
+      </Camera>
+      
+      <RedButton bubbleState={bubbleState} setBubbleState={setBubbleState} />
+      <Bubble bubbleState={bubbleState} response={response} />
+      
     </View>
   );
 }
