@@ -11,8 +11,8 @@ function App() {
   return (
     <div className="App">
       <VideoStream />
-      <AudioRecorder />
-      <Bubble bubbleState={bubbleState} setBubbleState={setBubbleState} />
+      <AudioRecorder setBubbleState={setBubbleState} />
+      <Bubble bubbleState={bubbleState} />
     </div>
   );
 }

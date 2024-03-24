@@ -1,22 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const AudioRecorder = () => {
+const AudioRecorder = ({ setBubbleState }) => {
   const [microphoneStatus, setMicrophoneStatus] = useState('');
   const [response, setResponse] = useState('');
-  const videoRef = useRef(null);
-  const canvasRef = useRef(null);
-
-  const startChat = () => {
-    navigator.mediaDevices.getUserMedia({ video: false, audio: true })
-      .then(stream => {
-        setMicrophoneStatus('Microphone status: Active');
-        activateVoice();
-      })
-      .catch(err => {
-        console.log('An error occurred: ' + err);
-        setMicrophoneStatus('Error accessing microphone: ' + err.message);
-      });
-  };
 
   const activateVoice = () => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition || window.oSpeechRecognition;
@@ -36,20 +22,16 @@ const AudioRecorder = () => {
           console.log('Recognition result:', result);
           setMicrophoneStatus('Detected speech: ' + result);
 
-          if (result.includes('hey paris')) {
-            console.log('Keyword detected. Prompting user.');
-            recognition.stop();
-            promptUser();
-            break;
-          } else if (result.includes('bye paris')) {
-            recognition.stop();
+          if (result.includes('hey who')) {
+            setBubbleState("listening");
+            console.log(result);
             break;
           }
         }
       };
 
       recognition.onerror = event => {
-        console.error('Recognition error:', event.error);
+        console.error('Recognition error: ', event.error);
         setMicrophoneStatus('Recognition error: ' + event.error);
       };
 
@@ -62,6 +44,24 @@ const AudioRecorder = () => {
       setMicrophoneStatus('Speech recognition not supported in your browser.');
     }
   };
+
+  const startChat = () => {
+    navigator.mediaDevices.getUserMedia({ video: false, audio: true })
+      .then(stream => {
+        setMicrophoneStatus('Microphone status: Active');
+        console.log("Hoo is listening..."); 
+        
+      })
+      .catch(err => {
+        console.log('An error occurred: ' + err);
+        setMicrophoneStatus('Error accessing microphone: ' + err.message);
+      });
+  };
+  
+  useEffect(() => {
+    startChat();
+    activateVoice();
+  }, []);
 
   const promptUser = () => {
     const userPrompt = window.prompt('Please enter your prompt:');
@@ -81,20 +81,14 @@ const AudioRecorder = () => {
   //     });
   // };
 
-  const captureImage = () => {
-    const canvas = canvasRef.current;
-    const context = canvas.getContext('2d');
-    context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-    return canvas.toDataURL('image/jpeg');
-  };
+  // const captureImage = () => {
+  //   const canvas = canvasRef.current;
+  //   const context = canvas.getContext('2d');
+  //   context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+  //   return canvas.toDataURL('image/jpeg');
+  // };
 
-  return (
-    <div>
-      <h1>AI Chat</h1>
-      <button onClick={startChat}>Start Chat</button>
-      <div>{response}</div>
-    </div>
-  );
+  return;
 }
 
 export default AudioRecorder;

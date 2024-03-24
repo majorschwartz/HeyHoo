@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+const Talk = require("../assets/loop.gif");
 
 const VideoStream = () => {
   const videoRef = useRef(null);
@@ -30,7 +31,10 @@ const VideoStream = () => {
   }, []);
 
   return (
-    <video className='video-frame' ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%', transform: 'scaleX(-1)' }} />
+    <>
+      <img className='patched-gif' src={Talk} alt="looping" />
+      <video className='video-frame' ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%', transform: 'scaleX(-1)' }} />
+    </>
   );
 };
 

@@ -21,9 +21,11 @@ button {
 
 .bubble-wrap {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   bottom: 30px;
-  width: 90%;
-  max-width: 600px;
+  width: 400px;
   padding: 8px 10px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
@@ -31,18 +33,33 @@ button {
   backdrop-filter: blur(6.5px);
   -webkit-backdrop-filter: blur(6.5px);
   border: 1px solid rgba(255, 255, 255, 0.3);
+
+  transition: width 450ms, height 450ms;
+}
+
+.bubble-wrap.waiting {
+  height: 61.5px;
+}
+
+.bubble-wrap.listening {
+  width: 80px;
 }
 
 .bubble-content {
   font-size: 1.3rem;
 }
 
-
-
-
+.bubble-content img {
+  width: 60px;
+  /* height: 20px; */
+}
 
 .test-button {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+.patched-gif {
+  width: 0;
 }
