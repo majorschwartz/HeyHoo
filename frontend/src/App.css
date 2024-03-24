@@ -13,17 +13,17 @@
     height: 100vh;
     width: auto;
     object-fit: cover;
-  }
+}
 
-  button {
-    position: absolute;
-  }
+button {
+  position: absolute;
+}
 
 .bubble-wrap {
   position: absolute;
   bottom: 30px;
   width: 90%;
-  max-width: 400px;
+  max-width: 600px;
   padding: 8px 10px;
   background-color: rgba(255, 255, 255, 0.6);
   border-radius: 20px;
@@ -34,7 +34,7 @@
 }
 
 .bubble-content {
-  font-size: 20px;
+  font-size: 1.3rem;
 }
 
 

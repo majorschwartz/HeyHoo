@@ -4,7 +4,7 @@ const VideoStream = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    var currentFrame = videoRef.current;
+    let currentFrame = videoRef.current;
 
     const getVideoStream = async () => {
       try {
