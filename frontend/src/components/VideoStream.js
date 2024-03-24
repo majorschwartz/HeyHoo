@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const VideoStream = () => {
   const videoRef = useRef(null);
@@ -30,10 +30,7 @@ const VideoStream = () => {
   }, []);
 
   return (
-    <div>
-      <h1>Video Stream</h1>
-      <video ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%', transform: 'scaleX(-1)' }} />
-    </div>
+    <video className='video-frame' ref={videoRef} autoPlay playsInline style={{ maxWidth: '100%', transform: 'scaleX(-1)' }} />
   );
 };
 

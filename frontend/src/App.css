@@ -1,2 +1,20 @@
 .App {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
 }
+
+.video-frame {
+    height: 100vh;
+    width: auto;
+    object-fit: cover;
+  }
+
+  button {
+    position: absolute;
+  }

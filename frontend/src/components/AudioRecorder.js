@@ -40,6 +40,10 @@ const AudioRecorder = () => {
       console.log('WebSocket connection established');
     };
 
+    socketRef.current.onmessage = (event) => {
+      console.log('This message is coming from the backend');
+    };
+
     // Handle WebSocket connection close
     socketRef.current.onclose = () => {
       console.log('WebSocket connection closed');
