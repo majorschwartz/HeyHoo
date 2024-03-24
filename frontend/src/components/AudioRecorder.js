@@ -42,6 +42,13 @@ const AudioRecorder = () => {
 
     socketRef.current.onmessage = (event) => {
       console.log('This message is coming from the backend');
+
+      if ('speechSynthesis' in window) {
+        const utterance = new SpeechSynthesisUtterance(event.data);
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.log('Text-to-speech is not supported in this browser.');
+      }
     };
 
     // Handle WebSocket connection close

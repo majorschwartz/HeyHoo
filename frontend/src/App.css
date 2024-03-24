@@ -18,3 +18,31 @@
   button {
     position: absolute;
   }
+
+.bubble-wrap {
+  position: absolute;
+  bottom: 30px;
+  width: 90%;
+  max-width: 400px;
+  padding: 8px 10px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(6.5px);
+  -webkit-backdrop-filter: blur(6.5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.bubble-content {
+
+}
+
+
+
+
+
+.test-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}

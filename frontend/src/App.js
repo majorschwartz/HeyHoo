@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import VideoStream from './components/VideoStream';
 import AudioRecorder from './components/AudioRecorder';
+import Bubble from './components/Bubble';
 
 import './App.css';
 
